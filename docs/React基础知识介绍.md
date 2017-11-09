@@ -33,7 +33,7 @@ render(
 
 这里的`'react'`对应的就是`./package.json`文件中`dependencies`中的`'react'`，即在该目录下用`npm install`安装的 react 。npm 安装的 react 的物理文件是存放在 `./node_modules/react`中的，因此引用的东西肯定就在这个文件夹里面。
 
-打开`./node_modules/react/package.json`找到`  "main": "react.js",`，这里的`main`即指定了入口文件，即`./node_modules/react/react.js`这个文件。那么，问题的答案自然就出来了。
+打开`./node_modules/react/package.json`找到`  "main": "react.js",`，这里的`main`即指定了入口文件，即`./node_modules/react/react.js`这个文件。
 
 
 

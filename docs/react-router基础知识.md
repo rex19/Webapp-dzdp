@@ -5,7 +5,7 @@
 
 安装 react-router `npm install react-router --save`，完成之后可查看`package.json`的变化。
 
-欢迎去[官网文档](https://github.com/ReactTraining/react-router)自己提前学习。
+欢迎去[官网文档](https://github.com/ReactTraining/react-router)。
 
 ## 创建页面
 
@@ -17,7 +17,7 @@
 - `./app/containers/Detail` 详情页
 - `./app/containers/NotFound` 404
 
-注意`App.jsx`中的代码目前是这样子的，而且放在这里有点多余，但是在正式的项目开发中，这个文件很有用，而且这个文件和`react-router`也将会结合的很好。
+`App.jsx`中的代码目前是这样子的，而且放在这里有点多余，但是在正式的项目开发中，这个文件很有用，而且这个文件和`react-router`也将会结合的很好。
 
 ```jsx
 class App extends React.Component {
@@ -53,13 +53,13 @@ class RouteMap extends React.Component {
 }
 ```
 
-注意，代码中`path='detail/:id'`，最后一个标记表示参数，例如`/detail/123`这个`123`就是参数，具体的使用在下文详解。
+注意，代码中`path='detail/:id'`，最后一个标记表示参数，例如`/detail/123`这个`123`就是参数
 
-还要注意，`<Route>`是可以嵌套的，上面的代码中只嵌套了一层，在后面的项目开发中，可能会嵌套层次多一些，不过是一个道理
+还要注意，`<Route>`是可以嵌套的，上面的代码中只嵌套了一层，在后面开发中，可能会嵌套层次多一些
 
 ## 使用 router
 
-`./app/index.jsx`中的代码如下，这样就使用了我们刚才定义的`routeMap`组件
+`./app/index.jsx`中的代码如下，这样就使用了刚才定义的`routeMap`组件
 
 ```jsx
 import React from 'react'
@@ -82,7 +82,7 @@ render(
 
 从给一个页面跳转到另一个页面，有两种方法。第一种是 `<Link>` 跳转，例如在 Home 页面中的代码。（其实这个`<Link>`渲染完了就是html中的`<a>`）
 
-```
+```jsx
 import React from 'react'
 import { Link } from 'react-router'
 
@@ -140,4 +140,4 @@ Detail 页面需要获取 url 中的`id`参数，否则配置这个参数就无�
 
 针对大型项目的**静态资源懒加载**问题，react-router 也给出了解决方案 —— [huge-apps](https://github.com/ReactTraining/react-router/tree/master/examples/huge-apps)，它将 react-router 本身和 webpack 的 `require.ensure` 结合起来，就解决了这一问题。
 
-不过——最后——我们还是不用这种方式——因为我们的项目还没有到那种规模。任何收获都要付出相应的代价，设计越复杂风险就越大，因此我推崇精简设计。至于这个“静态资源懒加载”，大家看一下刚才的源码就能明白了。
+不过——最后——我们还是不用这种方式——因为我们的项目还没有到那种规模。任何收获都要付出相应的代价，设计越复杂风险就越大，因此推崇精简设计。至于这个“静态资源懒加载”，看一下刚才的源码就能明白了。

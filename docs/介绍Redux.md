@@ -5,9 +5,9 @@ Redux是一个数据状态管理插件，搭配 React 特别合适，详细的�
 
 ## 使用场景
 
-无论是移动端还是 pc 端，当你使用 React 或者 vue 开发组件化的 SPA 程序时，组件之间共享信息是一个非常大的问题。例如，用户登录之后客户端会存储用户信息（如`userid`、头像等），而系统的很多个组件都会用到这些信息，例如收藏、点赞、评论等。这些组件在用到用户信息时，难道每次使用都重新获取一遍？———— 自然不是这样。因此每个系统都需要一个管理多组件使用的公共信息的功能，这就是 Redux 的作用。同理，vue 也有相应的工具，即 vuex ，可以自己去 github 上搜索相关资料。
+无论是移动端还是 pc 端，当你使用 React 或者 vue 开发组件化的 SPA 程序时，组件之间共享信息是一个非常大的问题。例如，用户登录之后客户端会存储用户信息（如`userid`、头像等），而系统的很多个组件都会用到这些信息，例如收藏、点赞、评论等。这些组件在用到用户信息时，难道每次使用都重新获取一遍？———— 自然不是这样。因此每个系统都需要一个管理多组件使用的公共信息的功能，这就是 Redux 的作用。同理，vue 也有相应的工具， vuex 
 
-初学者可能通过这几句话无法真实理解它的用意，此时你只需要记住：**只要使用 React 开发系统，你绝大部分都需要结合 Redux 来使用**，后面的课程我们详细讲解 Redux 在实际项目中的使用，课程结束后，你就会明白其中的道理。
+
 
 ## 安装
 
@@ -60,7 +60,7 @@ Redux是一个数据状态管理插件，搭配 React 特别合适，详细的�
 
 ## 创建 store
 
-跟上次讲过得简单 demo 一样，首先也需要创建一个`store`，参见`./app/store/configureStore.js`的代码。之前的 demo 提到，创建`store`之前要有规则，这里的第一个参数就是这个规则，后面会详细讲到。
+首先也需要创建一个`store`，参见`./app/store/configureStore.js`的代码。之前的 demo 提到，创建`store`之前要有规则，这里的第一个参数就是这个规则
 
 ```js
     const store = createStore(rootReducer, initialState,
@@ -74,20 +74,20 @@ Redux是一个数据状态管理插件，搭配 React 特别合适，详细的�
 
 ## 创建规则（Reducer）
 
-使用 Redux 时，刚才提到的“规则”被称作`reducer`（就是一个统一的称呼，不比去纠结），因此这里的数据规则代码都在`./app/reducers`目录下。
+使用 Redux 时，刚才提到的“规则”被称作`reducer`，因此这里的数据规则代码都在`./app/reducers`目录下。
 
 先看`userinfo.js`的代码，跟上次 demo 中的几乎一样，唯一的区别就是将 const 都写到了`./app/constants/userinfo.js`中。之所以这样做，是因为这些 const 会在多个文件中使用，因此要抽象出来。
 
-再看`index.js`的代码，它用`combineReducers`这个函数对`userinfo.js`的数据进行了封装，这样做是为了更好的扩展性。试想，一个系统中存储在 Redux 中的数据可能会有很多，我们这里已经有一个`userinfo.js`处理用户数据，和可能哪天就再加`nav.js`处理导航数据、加`ad.js`处理广告数据……
+再看`index.js`的代码，它用`combineReducers`这个函数对`userinfo.js`的数据进行了封装，这样做是为了更好的扩展性。试想，一个系统中存储在 Redux 中的数据可能会有很多，这里已经有一个`userinfo.js`处理用户数据，和可能哪天就再加`nav.js`处理导航数据、加`ad.js`处理广告数据……
 
 上次的demo中，`state`就是一个数据，可以进行`state + 1`或`state - 1`，数据结构非常简单。而现在，数据结构复杂太多，必须分组管理。因此我们需要用`state.userinfo`来表示用户数据，`state.nav`表示导航数据，`state.ad`表示广告数据…… ———— 这就是用`combineReducers`分装各个 reducer 的作用。
 
 
 ## 创建 action
 
-上次的 demo 中，最后执行数据变化时`store.dispatch({type: 'INCREMENT'})`，这里的`{type: 'INCREMENT'}`是我们手动写上的，而在实际的应用中，我们需要用一些函数将它分装起来，即`./app/actions`中的文件，虽然此处只有`userinfo.js`这一个文件。
+上次的 demo 中，最后执行数据变化时`store.dispatch({type: 'INCREMENT'})`，这里的`{type: 'INCREMENT'}`是我们手动写上的，而在实际的应用中，需要用一些函数将它分装起来，即`./app/actions`中的文件，虽然此处只有`userinfo.js`这一个文件。
 
-在`userinfo.js`中，我们把每个业务操作都分装为一个函数，该函数接收`data`，然后再根据 reducer 的规则对 data 进行分装，最后返回。当然，最后返回的结果肯定还是会交给`dispatch`来处理，这是后面要说的。
+在`userinfo.js`中，把每个业务操作都分装为一个函数，该函数接收`data`，然后再根据 reducer 的规则对 data 进行分装，最后返回。当然，最后返回的结果肯定还是会交给`dispatch`来处理
 
 
 ## 结合到 React
@@ -131,7 +131,7 @@ export default connect(
 ```
 
 
-获取了数据和 actions 该怎么用呢？我们将它们传递给子组件，`A`和`B`组件负责展示数据，`C`组件负责触发actions。具体可参见各个组件的源代码。
+获取了数据和 actions 我们将它们传递给子组件，`A`和`B`组件负责展示数据，`C`组件负责触发actions。具体可参见各个组件的源代码。
 
 ```jsx
     render() {
