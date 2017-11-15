@@ -8,6 +8,6 @@
 - [搭建webpack+React开发环境](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E6%90%AD%E5%BB%BAwebpack%2BReact%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.md)
 - [登录页面的开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%BC%80%E5%8F%91.md)
 - [首页开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E9%A6%96%E9%A1%B5%E5%BC%80%E5%8F%91.md)
-- [fetch+数据Mock]
+- [fetch+数据Mock](https://github.com/rex19/Webapp-dzdp/blob/master/docs/fetch%2B%E6%95%B0%E6%8D%AEMock.md)
 
 

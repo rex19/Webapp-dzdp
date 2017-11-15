@@ -59,3 +59,96 @@ fetch 方法请求数据，返回的是一个 Promise 对象，接下来我们�
 
 
 ### post 的基本使用
+
+参见`./app/fetch/test.js`源码，首先要引入依赖的插件
+
+```js
+import 'whatwg-fetch'
+import 'es6-promise'
+```
+
+然后用 fetch 发起一个 post 请求（有`method: 'POST'`），第一个参数是 url，第二个参数是配置信息。注意下面配置信息中的`headers`和`body`的格式。
+
+```js
+    var result = fetch('/api/post', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        // 注意 post 时候参数的形式
+        body: "a=100&b=200"
+    });
+```
+
+fetch 提交数据之后，返回的结果也是一个 Promise 对象，跟 get 方法一样，因此处理方式也一样。
+
+
+## 抽象`get`和`post`
+
+如果每次获取数据，都向上面一样写好多代码，就太冗余了，这里将 get 和 post 两个方法单独抽象出来。参见`./app/fetch/get.js`和`./app/fetch/post.js`的源码。
+
+需要注意的是，`post.js`中，将参数做了处理。因为上面的代码中提到，`body: "a=100&b=200"`这种参数格式是有要求的，而我们平时在 js 中使用最多的是 JSON 格式的数据，因此需要转换一下，让它更加易用。
+
+这两个方法抽象之后，接下来我们再用，就变得相当简单了。参见 `./app/fetch/data.js`
+
+```js
+    // '/api/1' 获取字符串
+    var result = get('/api/1')
+
+    result.then(res => {
+        return res.text()
+    }).then(text => {
+        console.log(text)
+    })
+```
+
+
+## 数据 Mock
+
+在目前 web 产品开发中，前后端大部分都是分离开发的，前端开发过程中无法实时得到后端的数据。这种情况下，一般会使用三种方式：
+
+- **模拟静态数据**：即按照既定的数据格式，自己提供一些静态的JSON数据，用相关工具（如[fis3](http://fis.baidu.com/fis3/docs/node-mock.html)）做接口来获取这些数据。该形式使用不比较简单的、只用 get 方法的场景，该项目不适用。
+- **模拟动态接口**：即自己用一个 web 框架，按照既定的接口和数据结构的要求，自己模拟后端接口的功能，让前端项目能顺利跑起来。该方式适用于新开发的项目，后端和前端同时开发。
+- **转发线上接口**：项目开发中，所有的接口直接用代理获取线上的数据，post 的数据也都直接提交到线上。该方式适用于成熟项目中。
+
+
+### 安装
+
+这里使用目前比较流行的 [koa](http://koa.bootcss.com/) 来做后端接口的模拟。因此要先安装 koa 极其相关的插件。执行`npm install koa koa-body koa-router --save-dev`，注意这里使用`--save-dev`，意思是只在开发过程中使用 koa ，项目发布之后 koa 就没用了。因为发布之后的项目，使用的就是后端工程师开发的线上的接口，而不是基于 koa 写的接口。
+
+
+### 模拟接口
+
+将模拟接口的代码都写在`./mock`目录下，接口文件是`./mock/server.js`（目前只有这一个文件，真正开发项目时，应该会分不同模块）。
+
+然后在`./package.json`中增加如下代码，然后执行`npm run mock`即可启动模拟的接口服务。
+
+```jsx
+  "scripts": {
+    "mock": "node --harmony ./mock/server.js",
+  },
+```
+
+启动之后，随便找一个 get 的接口，访问以下，例如`http://localhost:3000/api/1`
+
+### 使用 webpack-dev-server 的代理
+
+koa 接口的端口是`3000`，而我们项目的接口是`8080`，这样不就跨域了吗？————如果默认情况下，肯定是跨域了。此时就需要 webpack-dev-server 做一个代理的转发。配置代码在`./webpack.config.js`中
+
+```js
+    devServer: {
+        proxy: {
+          // 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。
+          // koa 代码在 ./mock 目录中，启动命令为 npm run mock
+          '/api': {
+            target: 'http://localhost:3000',
+            secure: false
+          }
+        },
+        // ...省略若干代码...
+    }
+```
+
+
