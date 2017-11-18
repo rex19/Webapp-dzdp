@@ -10,4 +10,4 @@
 - [fetch+数据Mock](https://github.com/rex19/Webapp-dzdp/blob/master/docs/fetch%2B%E6%95%B0%E6%8D%AEMock.md)
 - [首页开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E9%A6%96%E9%A1%B5%E5%BC%80%E5%8F%91.md)
 - [选择城市页](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E9%80%89%E6%8B%A9%E5%9F%8E%E5%B8%82%E9%A1%B5.md)
-
+- [首页开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E9%A6%96%E9%A1%B5%E5%BC%80%E5%8F%91.md)
