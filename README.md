@@ -10,4 +10,5 @@
 - [fetch+数据Mock](https://github.com/rex19/Webapp-dzdp/blob/master/docs/fetch%2B%E6%95%B0%E6%8D%AEMock.md)
 - [首页开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E9%A6%96%E9%A1%B5%E5%BC%80%E5%8F%91.md)
 - [选择城市页](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E9%80%89%E6%8B%A9%E5%9F%8E%E5%B8%82%E9%A1%B5.md)
-- [首页开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E9%A6%96%E9%A1%B5%E5%BC%80%E5%8F%91.md)
+- [用户主页的开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E7%94%A8%E6%88%B7%E4%B8%BB%E9%A1%B5%E7%9A%84%E5%BC%80%E5%8F%91.md)
+- [商户详情页面的开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E5%95%86%E6%88%B7%E8%AF%A6%E6%83%85%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%BC%80%E5%8F%91.md)
