@@ -13,3 +13,4 @@
 - [用户主页的开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E7%94%A8%E6%88%B7%E4%B8%BB%E9%A1%B5%E7%9A%84%E5%BC%80%E5%8F%91.md)
 - [商户详情页面的开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E5%95%86%E6%88%B7%E8%AF%A6%E6%83%85%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%BC%80%E5%8F%91.md)
 - [收藏和购买的开发](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E6%94%B6%E8%97%8F%E5%92%8C%E8%B4%AD%E4%B9%B0%E7%9A%84%E5%BC%80%E5%8F%91.md)
+- [搜索页面](https://github.com/rex19/Webapp-dzdp/blob/master/docs/%E6%90%9C%E7%B4%A2%E9%A1%B5%E9%9D%A2.md)
