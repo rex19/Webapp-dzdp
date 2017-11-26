@@ -39,3 +39,11 @@ class List extends React.Component {
 }
 ```
 
+React 有一个生命周期 hook 叫做`shouldComponentUpdate`，组件每次更新之前，都要过一遍这个函数，如果这个函数返回`true`则更新，如果返回`false`则不更新。而默认情况下，这个函数会一直返回`true`，就是说，如果有一些无效的改动触发了这个函数，也会导致无效的更新(组件中的`props`和`state`一旦变化会导致组件重新更新并渲染，但是如果`props`和`state`没有变化也莫名其妙的触发更新了)
+
+这里使用`this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);`的意思是重写组件的`shouldComponentUpdate`函数，在每次更新之前判断`props`和`state`，如果有变化则返回`true`，无变化则返回`false`。
+
+因此，在每个 React 组件中都尽量使用`PureRenderMixin`
+
+
+
