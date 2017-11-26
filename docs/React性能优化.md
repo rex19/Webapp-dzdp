@@ -47,3 +47,15 @@ React 有一个生命周期 hook 叫做`shouldComponentUpdate`，组件每次更
 
 
 
+## Immutable.js 优化
+
+React 的终极优化是使用 [Immutable.js](https://facebook.github.io/immutable-js/) 来处理数据，Immutable 实现了 js 中不可变数据的概念。
+
+但是也不是所有的场景都适合用它，当组件的`props`和`state`中的数据结构层次不深（例如普通的数组、对象等）的时候，就没必要用它。但是当数据结构层次很深（例如`obj.x.y.a.b = 10`这种），就得考虑使用了。
+
+
+
+
+
+
+
